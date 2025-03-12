@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Kshipra Wadikar" />
+  <meta name="dcterms.date" content="2025-03-04" />
+  <title>Quantum Computing 101: Essential Math and Concepts</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Quantum Computing 101: Essential Math and
+Concepts</h1>
+<p class="author">Kshipra Wadikar</p>
+<p class="date">2025-03-04</p>
+</header>
+<h1 id="introduction">Introduction</h1>
+<p>We are all familiar with classical computing, where information is
+stored in bits—each bit can be either 0 or 1, but not both
+simultaneously. So, what makes quantum computing different?<br />
+Quantum computing leverages the principles of quantum mechanics,
+allowing information to be processed in a fundamentally new way. In
+quantum systems, we use qubits, which can exist in a superposition of
+both 0 and 1 at the same time.<br />
+This unique property enables quantum computers to perform complex
+computations exponentially faster than classical computers. Quantum
+computing has the potential to revolutionize artificial intelligence,
+cryptography, and optimization by solving problems that are infeasible
+for traditional computers. However, before diving into these advanced
+topics, it is essential to have a strong foundation in linear algebra
+and complex numbers, as they form the mathematical backbone of quantum
+mechanics.</p>
+<h1 id="prerequisites">Prerequisites</h1>
+<p>Before we dive into Quantum Computing, you should have a basic
+understanding of:</p>
+<ul>
+<li><p><strong>Matrices</strong> – Rows, columns, and matrix
+multiplication</p>
+<ul>
+<li><p><a
+href="https://www.khanacademy.org/math/algebra/x2f8bb11595b61c86:matrices">Introduction
+to Matrices (Khan Academy)</a></p></li>
+<li><p><a
+href="https://ocw.mit.edu/courses/mathematics/18-06-linear-algebra-spring-2010/">Matrix
+Operations (MIT OpenCourseWare)</a></p></li>
+</ul></li>
+<li><p><strong>Matrix Product</strong> – Standard matrix multiplication
+rules</p>
+<ul>
+<li><p><a
+href="https://ocw.mit.edu/courses/mathematics/18-06-linear-algebra-spring-2010/">MIT
+OpenCourseWare - Matrix Multiplication</a></p></li>
+</ul></li>
+<li><p><strong>Linear Algebra</strong> – Concept of basis vectors and
+transformations</p>
+<ul>
+<li><p><a
+href="https://ocw.mit.edu/courses/mathematics/18-06-linear-algebra-spring-2010/">MIT
+OpenCourseWare - Basis and Dimension</a></p></li>
+<li><p><a
+href="https://www.maths.ox.ac.uk/system/files/attachments/lecture-notes.pdf">University
+of Oxford - Linear Algebra Notes</a></p></li>
+</ul></li>
+<li><p><strong>Complex Numbers</strong> – Basics of imaginary numbers,
+complex conjugates, and magnitude</p>
+<ul>
+<li><p><a
+href="https://ocw.mit.edu/courses/mathematics/18-06-linear-algebra-spring-2010/">MIT
+OpenCourseWare - Complex Numbers (Lecture 2)</a></p></li>
+<li><p><a href="https://www.damtp.cam.ac.uk/user/examples/">University
+of Cambridge - Complex Numbers Notes</a></p></li>
+</ul></li>
+</ul>
+<p>Don’t worry if you’re not familiar with these concepts! Whenever
+required, we will briefly revise these topics or provide relevant
+resources and links to help you understand them better.</p>
+<h1 id="kronecker-product-rule">Kronecker product rule</h1>
+<p>The Kronecker product an essential mathematical operation in quantum
+computing.<br />
+This operation is fundamental in constructing multi-qubit systems and
+understanding how quantum states scale in higher dimensions.<br />
+Let  <span class="math inline">\(A\)</span> and <span
+class="math inline">\(B\)</span> be matrices as <span
+class="math inline">\(A = \begin{bmatrix} a \\ b \end{bmatrix}\)</span>
+and <span class="math inline">\(B = \begin{bmatrix} c \\ d
+\end{bmatrix}\)</span>. The Kronecker product is given by: <span
+class="math display">\[A \otimes B = \begin{bmatrix} a \\ b
+\end{bmatrix} \otimes
+\begin{bmatrix} c \\ d \end{bmatrix} =
+\begin{bmatrix} aB \\ bB \end{bmatrix} =
+\begin{bmatrix} ac \\ ad \\ bc \\ bd \end{bmatrix}\]</span><br />
+For example<br />
+Let  <span class="math inline">\(A\)</span> and <span
+class="math inline">\(B\)</span> be matrices as <span
+class="math inline">\(A = \begin{bmatrix} 1 \\ -1 \end{bmatrix}\)</span>
+and <span class="math inline">\(B = \begin{bmatrix} 1 \\ 2
+\end{bmatrix}\)</span>. The Kronecker product is given by: <span
+class="math display">\[A \otimes B =
+\begin{bmatrix} 1 \\ 2 \\ -1 \\ -2 \end{bmatrix}\]</span><br />
+Let’s Do This Together!<br />
+Before we proceed, grab a pen and paper!<br />
+The best way to understand the Kronecker product is to calculate it
+yourself step by step.<br />
+Now it’s your turn! Write this down and try calculating it yourself.
+Multiply each element of A by B and see if you get the same
+result.<br />
+If not, go back and check your steps—you’ll quickly see the
+pattern!<br />
+Once you get comfortable with this, we’ll apply it to larger matrices
+and real-world problems.<br />
+Our next example is as below.<br />
+Let <span class="math inline">\(A\)</span> and <span
+class="math inline">\(B\)</span> be matrices:</p>
+<p><span class="math display">\[A = \begin{bmatrix} 1 \\ 2
+\end{bmatrix}, \quad
+B = \begin{bmatrix} 3 \\ 4 \end{bmatrix}\]</span></p>
+<p>The Kronecker product is computed as:</p>
+<p><span class="math display">\[A \otimes B =
+\begin{bmatrix} 1 \\ 2 \end{bmatrix} \otimes
+\begin{bmatrix} 3 \\ 4 \end{bmatrix} =
+\begin{bmatrix} 1B \\ 2B \end{bmatrix} =
+\begin{bmatrix} 3 \\ 4 \\ 6 \\ 8 \end{bmatrix}\]</span><br />
+Now, let’s apply the Kronecker product to a larger matrix.<br />
+This time, A is a 2×2 matrix, and B is a 2×1 column vector.<br />
+Our calculation follows the same rule: multiply each element of A with
+the full matrix B.<br />
+<span class="math display">\[A = \begin{bmatrix} 1 &amp; 2 \\ 3 &amp; 4
+\end{bmatrix}, \quad
+B = \begin{bmatrix} c \\ d \end{bmatrix}\]</span></p>
+<p><span class="math display">\[A \otimes B =
+\begin{bmatrix} 1B &amp; 2B \\ 3B &amp; 4B \end{bmatrix} =
+\begin{bmatrix}
+1c &amp; 2c \\
+1d &amp; 2d \\
+3c &amp; 4c \\
+3d &amp; 4d  
+\end{bmatrix}\]</span><br />
+The following **Python script** computes the Kronecker product for
+specific values of <span class="math inline">\(c = 5\)</span> and <span
+class="math inline">\(d = 6\)</span>:</p>
+<pre style="python"
+data-caption="Computing the Kronecker Product in Python"><code>import numpy as np
+    
+    # Define values for c and d
+    c, d = 5, 6  # Assign actual numerical values
+    
+    # Define matrices A and B
+    A = np.array([[1, 2], [3, 4]])  # 2x2 matrix
+    B = np.array([[c], [d]])        # 2x1 matrix
+    
+    # Compute Kronecker product
+    kronecker_result = np.kron(A, B)
+    
+    # Display the result
+   
+    print(&quot;Kronecker Product of A and B is :\n&quot;, kronecker_result) 
+</code></pre>
+<p>The output of teh above code is as below.</p>
+<pre><code>        Kronecker Product of A and B is:
+        [[ 5 10]
+         [ 6 12]
+         [15 20]
+         [18 24]]</code></pre>
+<p>This operation "Kronecker product" plays a fundamental role in
+quantum mechanics and multi-qubit systems, making it a key mathematical
+tool for quantum computing.</p>
+<h1
+id="understanding-qubit-basis-vectors-using-the-kronecker-product">Understanding
+Qubit Basis Vectors Using the Kronecker Product</h1>
+<h2 id="one-qubit-system">One-Qubit System</h2>
+<p>In quantum computing, qubits are represented as column vectors in a
+2D complex Hilbert space <span
+class="math inline">\(\mathcal{H}_2\)</span>: <span
+class="math display">\[\begin{aligned}
+&amp;\ket{0} =
+\begin{bmatrix} 1 \\ 0 \end{bmatrix}, \quad
+\ket{1} =
+\begin{bmatrix} 0 \\ 1 \end{bmatrix} \\
+&amp;\text{These are column vectors in } \mathbb{C}^2. \\
+&amp;\text{In a 2D complex Hilbert space, } \ket{0} \text{ and } \ket{1}
+\text{ serve as basis vectors for representing a qubit.}
+\end{aligned}\]</span> <span class="math inline">\(\textbf{A general
+qubit state is given by:} \newline
+\ket{\psi} = a_0 \ket{0} + a_1 \ket{1}, ~\text{where } a_0, a_1 \in
+\mathbb{C} \text{ and } |a_0|^2 + |a_1|^2 = 1.\)</span><br />
+ <br />
+  <br />
+<span class="math inline">\(\textbf{Understanding Qubit Superposition}
+\newline
+\text{Consider a qubit state given by:}
+\ket{\psi} = a_0 \ket{0} + a_1 \ket{1} ~\text{where } a_0, a_1
+\in\mathbb{C}\\ \text{~and satisfy the normalization condition:~}
+|a_0|^2 + |a_1|^2 = 1. \newline
+a_0 \text{ and } a_1 \text{ are called \textbf{probability amplitudes}.}
+\newline
+\text{The squares of their magnitudes, } |a_0|^2 \text{ and } |a_1|^2,
+\text{ represent the probabilities of measuring } \ket{0} \text{ or }
+\ket{1}. \newline
+\text{If } a_0 = 1 \text{ and } a_1 = 0, \text{ the qubit is in state }
+\ket{0}. \newline
+\text{If } a_0 = 0 \text{ and } a_1 = 1, \text{ the qubit is in state }
+\ket{1}. \newline
+\text{If both } a_0 \text{ and } a_1 \text{ are nonzero, the qubit is in
+a \textbf{superposition} of } \ket{0} \text{ and }
+\ket{1}.\)</span><br />
+</p>
+<h2 id="multi-qubit-system">Multi-Qubit System</h2>
+<p>While a single qubit can hold two possible states <span
+class="math inline">\(~\ket{0}~\)</span> and <span
+class="math inline">\(~\ket{1}~\)</span>, quantum systems become much
+more powerful when we have multiple qubits.<br />
+A system with two qubits is not just a combination of two single
+qubits—it forms a new quantum state in a larger vector space.</p>
+</body>
+</html>
